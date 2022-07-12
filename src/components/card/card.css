@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.image__container{
+    overflow: hidden;
+}
+.country__flag{
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+.country__flag:hover{
+    transform: scale(1.1);
+    transform-origin: center;
+}
+.country__desc{
+    display: flex;
+    flex-direction: column;
+    padding: 1.75rem 1.5rem;
+}
+.country__name{
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+.country__population,.country__region,.country__capital{
+    font-weight: 600;
+}
+.oppa{
+    opacity: 80%;
+}

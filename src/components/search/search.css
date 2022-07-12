@@ -1,0 +1,113 @@
+.search-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.input {
+    height: 100%;
+    font-weight: 600;
+    font-size: 18px;
+    flex: 1;
+}
+
+.input[data-theme="light"] {
+    color: var(--clr-lightmode-text);
+}
+
+.input[data-theme="dark"] {
+    color: var(--clr-darkmode-text);
+}
+
+.input::placeholder {
+    font-weight: 600;
+    font-size: 1rem;
+}
+.input::placeholder[data-theme = "dark"]{
+    color:var(--clr-darkmode-text);
+}
+
+.search-icon {
+    margin: 0 1rem;
+}
+
+.search-icon[data-theme='light'] {
+    color: var(--clr-lightmode-input);
+}
+
+/* .input::placeholder[data-theme = "dark"] {
+    color: white;
+    opacity: 50%;
+} */
+.custom-select {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding-inline: 1rem;
+    font-weight: 600;
+    border-radius: 5px;
+    width: 200px;
+    position: relative;
+}
+
+.select-container{
+    display: flex;
+    height: 50px;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-list{
+    z-index:10;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    border-radius: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-block: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: transform 0.3s ease-in-out,opacity 0.3s ease-in-out;
+}
+.select-list[data-expanded="true"]{
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+.select-item{
+    padding-left: 18px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.arrow-icon[data-rotate = "true"]{
+    transform: rotate(180deg);
+}
+
+@media (max-width: 768px) {
+    .search-form{
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .input-wrapper{
+        width: 100%;
+    }
+}
+
+@media (hover:hover){
+    .select-item:hover{
+        color: rgb(16, 35, 143);
+    }
+}
