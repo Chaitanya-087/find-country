@@ -32,8 +32,11 @@
     font-weight: 600;
     font-size: 1rem;
 }
+.input::placeholder[data-theme="light"] {
+    color:var(--clr-lightmode-input) !important;
+}
 .input::placeholder[data-theme = "dark"]{
-    color:var(--clr-darkmode-text);
+    color:var(--clr-darkmode-text) !important;
 }
 
 .search-icon {
@@ -44,10 +47,6 @@
     color: var(--clr-lightmode-input);
 }
 
-/* .input::placeholder[data-theme = "dark"] {
-    color: white;
-    opacity: 50%;
-} */
 .custom-select {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding-inline: 1rem;

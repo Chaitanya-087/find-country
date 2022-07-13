@@ -14,7 +14,7 @@ const Search = ({searchParams}) => {
     
     return (
         <div className='search-form'>
-            <form onSubmit={(e) => e.preventDefault()} className='input-wrapper' style={{backgroundColor:changeTheme("element")}}>
+            <form onSubmit={(e) => e.preventDefault()} className='input-wrapper' style={{backgroundColor:changeTheme("element"),color:changeTheme('text')}}>
                 <SearchIcon className='search-icon' data-theme={theme}/>
                 <input className='input' type='text'  placeholder='Search for a country...' data-theme={theme} onChange = {(e)=>setCountryName(e.target.value)}/>
             </form>
