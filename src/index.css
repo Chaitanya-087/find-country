@@ -38,8 +38,8 @@ html {
 }
 
 /* A elements that don't have a class get default styles */
-a:not([class]) {
-  text-decoration-skip-ink: auto;
+a{
+  all: unset;
 }
 
 /* Make images easier to work with */
@@ -55,7 +55,11 @@ input{
   outline: none;
   background-color: transparent;
 }
-
+.container{
+  max-width: 90%;
+  margin: auto;
+  padding-block: 1.25rem;
+}
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {

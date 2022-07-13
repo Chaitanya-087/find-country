@@ -11,6 +11,7 @@ const Search = ({searchParams}) => {
     const toggleMenu = () => {
         setOpenMenu(prev => !prev)
     }
+    
     return (
         <div className='search-form'>
             <form onSubmit={(e) => e.preventDefault()} className='input-wrapper' style={{backgroundColor:changeTheme("element")}}>
