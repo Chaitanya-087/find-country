@@ -11,6 +11,7 @@ const Details = () => {
     const {countriesFiltered,isLoading} = useSearchCountry('all',countryName)
 
     const country = countriesFiltered[0]
+    
     return (
         <div className='container details'>
             { isLoading ? <CircularProgress className='loading-icon' /> : 
@@ -43,11 +44,9 @@ const Details = () => {
                                 </div>
                             </div>
                             <div className='bottom'>
-                                <p className='detail'>Country Borders:</p>
+                                <p className='detail'>Country Borders:&nbsp;</p>
                                 <div className='borders__wrapper'>
-                                    {
-                                        country?.borders && Object.values(country?.borders).join(',')
-                                    }
+                                    <p className='detail'><span className='oppa'>{country?.borders && Object.values(country?.borders).join(',')}</span></p>
                                 </div>
                             </div>
                         </div>

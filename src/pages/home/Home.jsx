@@ -31,7 +31,7 @@ const Home = () => {
   }
 
   window.onscroll = () => {
-    if ((window.innerHeight + Math.round(document.documentElement.scrollTop) === document.documentElement.offsetHeight) && ( showSome < countriesFiltered.length)) {
+    if ((window.innerHeight + Math.round(document.documentElement.scrollTop) + 200 >= document.documentElement.offsetHeight) && ( showSome < countriesFiltered.length)) {
       fetchMore()
     }
     else return

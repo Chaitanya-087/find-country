@@ -28,15 +28,16 @@
     color: var(--clr-darkmode-text);
 }
 
-.input::placeholder {
+input::-webkit-input-placeholder {
     font-weight: 600;
     font-size: 1rem;
 }
-.input::placeholder[data-theme="light"] {
+input[data-theme="light"]::-webkit-input-placeholder {
     color:var(--clr-lightmode-input) !important;
 }
-.input::placeholder[data-theme = "dark"]{
+input[data-theme = "dark"]::-webkit-input-placeholder{
     color:var(--clr-darkmode-text) !important;
+    opacity: 80%;
 }
 
 .search-icon {

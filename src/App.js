@@ -4,6 +4,8 @@ import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
 import { BrowserRouter as Router ,Routes ,Route } from 'react-router-dom';
 
+
+
 function App() {
   const {changeTheme} = useTheme()
   return (
