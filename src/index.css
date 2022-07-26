@@ -42,6 +42,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
   }
 /* A elements that don't have a class get default styles */
 a{

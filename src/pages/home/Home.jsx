@@ -42,7 +42,7 @@ const Home = () => {
       <Search searchParams={searchParams} />
       <div className='cards-grid' data-loading={isLoading}>
         {displayCountries.map((country, index) => {
-          return  <Link key={index} to={`/find-country/${country.name.common}`}>
+          return  <Link key={index} to={`/${country.name.common}`}>
                   <Card country={country} />
               </Link>
         })}
