@@ -17,7 +17,7 @@ const Details = () => {
             { isLoading ? <CircularProgress className='loading-icon' /> : 
             <>
                 <div className='country__details__wrapper'>
-                    <Link to='/'>
+                    <Link to='/find-country'>
                         <button className='btn-back' style={{ backgroundColor: changeTheme("element") , color: changeTheme("text") }}>
                             <KeyboardBackspaceIcon />
                             <span>Back</span>
