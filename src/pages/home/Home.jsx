@@ -42,9 +42,9 @@ const Home = () => {
       <Search searchParams={searchParams} />
       <div className='cards-grid' data-loading={isLoading}>
         {displayCountries.map((country, index) => {
-          return  <Link key={index} to={`/${country.name.common}`}>
+          return <Link key={index} to={`/${country.name.common}`}>
                   <Card country={country} />
-              </Link>
+                 </Link>
         })}
       </div>
         {isLoading && <CircularProgress className='loading-icon' />}
