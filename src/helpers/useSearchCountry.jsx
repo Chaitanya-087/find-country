@@ -5,6 +5,7 @@ import { useEffect,useState } from 'react'
 const useSearchCountry = (region,searchedValue) => {
     const [countries,setCountries] = useState([]);
     const [isLoading,setLoading] = useState(false)
+    
     useEffect(() => {
         setLoading(true)
         const getCountries = async () => {
