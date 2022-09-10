@@ -1,6 +1,6 @@
 {
   "homepage": "https://Chaitanya-087.github.io/find-country",
-  "root":"./build",
+  "root": "./build",
   "clean_urls": false,
   "routes": {
     "/**": "index.html"

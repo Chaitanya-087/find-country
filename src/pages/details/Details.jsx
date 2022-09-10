@@ -7,9 +7,7 @@ import useSearchCountry from '../../helpers/useSearchCountry';
 
 const Details = () => {
     const { changeTheme } = useTheme()
-    let { countryName } = useParams()
-    const {countriesFiltered,isLoading} = useSearchCountry('all',countryName)
-
+    const {countriesFiltered,isLoading} = useSearchCountry('all',useParams().countryName)
     const country = countriesFiltered[0]
     
     return (
@@ -32,7 +30,7 @@ const Details = () => {
                             <div className='middle'>
                                 <div className='left'>
                                     <p className='detail'>Native Name: <span className="oppa">{country?.name?.official}</span></p>
-                                    <p className='detail'>Population: <span className="oppa">{country?.population}</span></p>
+                                    <p className='detail'>Population: <span className="oppa">{country?.population.toLocaleString()}</span></p>
                                     <p className='detail'>Region: <span className="oppa">{country?.region}</span></p>
                                     <p className='detail'>Sub Region: <span className="oppa">{country?.subregion}</span></p>
                                     <p className='detail'>Capital: <span className="oppa">{country?.capital}</span></p>

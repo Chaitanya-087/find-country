@@ -13,8 +13,8 @@ function App() {
         <Navbar />
 
           <Routes>
-            <Route exact path='/find-country' element={<Home/>}/>
-            <Route exact path="/find-country/:countryName" element={<Details/>} />
+            <Route path='/find-country' element={<Home/>}/>
+            <Route path="/find-country/:countryName" element={<Details/>} />
           </Routes>
       
       </div>
