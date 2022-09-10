@@ -1,25 +1,27 @@
+
+
 import { useEffect,useState } from 'react'
-import Axios from 'axios'
 
-
-
-//type,payload
-const useSearchCountry = (type='',payload='') => {
-    const BaseURL = "https://restcountries.com/v3.1/"
+const useSearchCountry = (region,searchedValue) => {
     const [countries,setCountries] = useState([]);
-    const [countriesFiltered,setCountriesFiltered] = useState([]);
-    const [country,setCountry] = useState({});
     const [isLoading,setLoading] = useState(false)
-
-    switch (type) {
-        case 'region': {
-            Axios.get(BaseURL+'region/'+payload).then(res => {setCountries(res.data)});break;
+    useEffect(() => {
+        setLoading(true)
+        const getCountries = async () => {
+            const response = await fetch('https://restcountries.com/v3.1/all')
+            const data = await response.json()
+            setCountries(data)
+            setLoading(false)
         }
-        case 'name': {Axios.get(BaseURL+'name/'+payload).then(res => {setCountries(res.data)});break;}
-        default: {Axios.get(BaseURL+'all').then(res => {setCountries(res.data)});break;} 
-    }
+        getCountries()
+    },[])
 
-    return {countries,countriesFiltered,isLoading}
+    let countriesFiltered = region.toLowerCase() === 'all' ?   countries : countries.filter(country => country.region.toLowerCase().includes(region.toLowerCase()))
+    countriesFiltered.sort((a,b) =>a.name.common > b.name.common ? 1 : -1)
+    if (searchedValue){
+        countriesFiltered = countriesFiltered.filter(country => country.name.common.toLowerCase().startsWith(searchedValue.toLowerCase()))
+    }
+    return {countriesFiltered,isLoading,setLoading}
 }
 
 export default useSearchCountry
