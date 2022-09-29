@@ -1,23 +1,21 @@
+import { Routes, Route } from 'react-router-dom';
+import React,{Suspense} from 'react'
 import Navbar from "./components/navbar/Navbar";
-import {useTheme} from './helpers/useTheme'
-import Home from "./pages/home/Home";
-import Details from "./pages/details/Details";
-import { Routes ,Route } from 'react-router-dom';
 
-
+const Home = React.lazy(()=>import('./pages/home/Home'))
+const Region = React.lazy(() => import('./components/region/Region'));
+const Details = React.lazy(() => import('./pages/details/Details'));
 
 function App() {
-  const {changeTheme} = useTheme()
   return (
-    <div className="App" style={{backgroundColor:changeTheme("background"),color:changeTheme("text")}}>
-        <Navbar />
-
-          <Routes>
-            <Route exact path='/' element={<Home/>}/>
-            <Route exact path="/:countryName" element={<Details/>} />
-          </Routes>
-      
-      </div>
+    <>
+      <Navbar />
+      <Routes>
+          <Route path='/' element={<Suspense fallback='<h4>loading...</h4>'><Home/></Suspense>} />
+          <Route path="/region/:region" element={<Suspense fallback='<h4>loading...</h4>'><Region/></Suspense>} />
+          <Route path="/name/:countryName" element={<Suspense fallback='<h4>loading...</h4>'><Details/></Suspense>} />
+      </Routes>
+    </>
   )
 }
 

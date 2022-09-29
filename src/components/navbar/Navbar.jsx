@@ -1,33 +1,33 @@
 import './navbar.css'
 import { useState } from 'react';
-import { IconButton } from '@mui/material';
-import {useTheme} from '../../helpers/useTheme'
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
+import switchTheme from '../../helpers/switchTheme';
 
 const Navbar = () => {
-    const {theme,toggleTheme,changeTheme} = useTheme();
-    const [darkMode,setDarkMode] = useState(false)
-    const toggleIcon = () => {
-        toggleTheme();
-        setDarkMode(prev => !prev)
+    const [theme,setTheme] = useState('dark')
+    const toggleTheme = () => {
+        if(theme === 'dark'){
+            switchTheme('dark')
+            setTheme('light')
+        }else{
+            switchTheme('light')
+            setTheme('dark')
+        }
     }
-
-  return (
-    <header className='navbar__wrapper' style={{backgroundColor:changeTheme('element')}}>
-        <div className='navbar'>
-            <span className='nav__title' >
-                Where in the world?
-            </span>
-            <div onClick={toggleIcon} className='btn-theme'>
-                <IconButton style={{color:changeTheme('text')}}>
-                    {darkMode ? <NightlightRoundIcon /> : <NightlightOutlinedIcon/> }
-                </IconButton>
-                <p className='theme-name'>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</p>
+    return (
+        <header className='navbar__wrapper'>
+            <div className='navbar'>
+                <span className='nav__title' >
+                    Where in the world?
+                </span>
+                <div className='btn-theme' onClick={toggleTheme}>
+                    {theme === 'light' ? <NightlightOutlinedIcon />:<NightlightRoundIcon /> }
+                    <span className='theme-name'>{theme}Theme</span>
+                </div>
             </div>
-        </div>
-    </header>
-  )
+        </header>
+    )
 }
 
 export default Navbar

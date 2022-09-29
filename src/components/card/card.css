@@ -4,8 +4,10 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     overflow: hidden;
     border-radius: 5px;
-    cursor: pointer;
+    position: relative;
+    background-color: var(--clr-element);
 }
+
 .image__container{
     overflow: hidden;
 }
@@ -32,5 +34,12 @@
     font-weight: 600;
 }
 .oppa{
+    opacity: 80%;
+}
+
+.moreinfo-btn{
+    position: absolute;
+    bottom: 0;
+    right: 0;
     opacity: 80%;
 }

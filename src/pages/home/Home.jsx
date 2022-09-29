@@ -1,54 +1,48 @@
-import React, { useState } from 'react'
-import Search from '../../components/search/Search'
-import useSearchCountry from '../../helpers/useSearchCountry';
-import CircularProgress from '@mui/material/CircularProgress';
-import Card from '../../components/card/Card';
-import {Link} from 'react-router-dom'
 import './home.css'
+import { useEffect, useRef, useState} from 'react'
+import Grid from '../../components/grid/Grid';
+import  Container  from '../../components/container/Container';
+import  Search  from '../../components/search/Search';
 
 const Home = () => {
+  const [countries, setCountries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [countryName, setCountryName] = useState('');
+  const once = useRef(false)
+  useEffect(() => { 
 
-  const [region, setRegion] = useState('all')
-  const [countryName, setCountryName] = useState('')
-  const { countriesFiltered, isLoading,setLoading} = useSearchCountry(region, countryName);
-  const [showSome, setShowSome] = useState(8)
-  let displayCountries = countriesFiltered.slice(0, showSome)
-
-  const searchParams = {
-    region,
-    setRegion,
-    countryName,
-    setCountryName
-  }
-
-  const fetchMore = () => {
+    if (once.current){
     setLoading(true)
-    setTimeout(() => {
-      setShowSome(showSome + 8)
-      displayCountries = [...displayCountries, ...countriesFiltered.slice(showSome - 8, showSome)]
-      setLoading(false)
-    }, 1000)
+    const getCountries = () => {
+      fetch('https://restcountries.com/v3.1/all').then((res) => res.json()).then(data => {
+        setLoading(false)
+        setCountries(data);
+      });
+    }
+    getCountries();
+  }
+  
+  return () => {
+    once.current = true
+  }
+  }, [])
+
+  const SearchCountries = (data) => {
+    if (countryName === '') {
+      return data
+    } else {
+      return data.filter((country) => {
+        return country.name.common.toLowerCase().includes(countryName.toLowerCase())
+      })
+    }
   }
 
-  window.onscroll = () => {
-    if ((window.innerHeight + Math.round(document.documentElement.scrollTop) + 200 >= document.documentElement.offsetHeight) && ( showSome < countriesFiltered.length)) {
-      fetchMore()
-    }
-    else return
-  }
 
   return (
-    <div className='container home'>
-      <Search searchParams={searchParams} />
-      <div className='cards-grid' data-loading={isLoading}>
-        {displayCountries.map((country, index) => {
-          return  <Link key={index} to={`/${country.name.common}`}>
-                  <Card country={country} />
-              </Link>
-        })}
-      </div>
-        {isLoading && <CircularProgress className='loading-icon' />}
-    </div>
+    <Container>
+      <Search setCountryName={setCountryName}/>
+      <Grid data={SearchCountries(countries)} loading={loading} />
+    </Container>
   )
 }
 
