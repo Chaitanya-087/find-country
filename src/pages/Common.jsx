@@ -21,8 +21,8 @@ const Common = ({ type }) => {
     const once = useRef(false)
 
     useEffect(() => {
+        setLoading(true)
         if (once.current) {
-            setLoading(true)
             const getCountries = () => {
                 fetch(url).then((res) => res.json()).then(data => {
                     setLoading(false)

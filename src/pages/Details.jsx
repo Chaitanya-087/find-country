@@ -23,8 +23,8 @@ const Details = () => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         if (once.current) {
-            setIsLoading(true)
             const fetchCountry = async () => {
                 try {
                     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
