@@ -1,19 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
-import React,{Suspense} from 'react'
+import Details from "./pages/details/Details";
+import Region from './components/region/Region';
 import Navbar from "./components/navbar/Navbar";
-
-const Home = React.lazy(()=>import('./pages/home/Home'))
-const Region = React.lazy(() => import('./components/region/Region'));
-const Details = React.lazy(() => import('./pages/details/Details'));
+import Home from "./pages/home/Home";
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-          <Route path='/' element={<Suspense fallback='<h4>loading...</h4>'><Home/></Suspense>} />
-          <Route path="/region/:region" element={<Suspense fallback='<h4>loading...</h4>'><Region/></Suspense>} />
-          <Route path="/name/:countryName" element={<Suspense fallback='<h4>loading...</h4>'><Details/></Suspense>} />
+          <Route path='/' element={<Home/>} />
+          <Route path="/region/:region" element={<Region />} />
+          <Route path="/name/:countryName" element={<Details />} />
       </Routes>
     </>
   )
