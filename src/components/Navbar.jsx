@@ -1,8 +1,8 @@
-import './navbar.css'
 import { useState } from 'react';
 import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 import NightlightOutlinedIcon from '@mui/icons-material/NightlightOutlined';
-import switchTheme from '../../helpers/switchTheme';
+import switchTheme from '../helpers/switchTheme';
+import css from '../styles/components.module.css';
 
 const Navbar = () => {
     const [theme,setTheme] = useState('dark')
@@ -16,14 +16,14 @@ const Navbar = () => {
         }
     }
     return (
-        <header className='navbar__wrapper'>
-            <div className='navbar'>
-                <span className='nav__title' >
+        <header className={css.navbar__wrapper}>
+            <div className={css.navbar__container}>
+                <span className={css.navbar__title}>
                     Where in the world?
                 </span>
-                <div className='btn-theme' onClick={toggleTheme}>
+                <div className={css.btn__theme} onClick={toggleTheme}>
                     {theme === 'light' ? <NightlightOutlinedIcon />:<NightlightRoundIcon /> }
-                    <span className='theme-name'>{theme}Theme</span>
+                    <span>{theme}Theme</span>
                 </div>
             </div>
         </header>

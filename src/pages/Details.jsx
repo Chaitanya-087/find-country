@@ -1,9 +1,8 @@
-import './details.css'
 import { useState,useEffect,useRef } from 'react';
 import { CircularProgress } from '@mui/material'
 import { Link,useParams } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import Container from '../../components/container/Container';
+import css from '../styles/pages.module.css'
 
 const Details = () => {
     const { countryName } = useParams()
@@ -48,46 +47,46 @@ const Details = () => {
     },[countryName])
 
     return (
-        <Container>
-            { isLoading ? <div className="loading-icon">
+        <div className={css.container}>
+            { isLoading ? <div className={css.loading__icon}>
                 <CircularProgress/>
             </div> : 
             <>
-                <div className='country__details__wrapper'>
+                <div className={css.country__details__wrapper}>
                     <Link to='/'>
-                        <button className='btn-back'>
+                        <button className={css.btn__back}>
                             <KeyboardBackspaceIcon />
                             <span>Back</span>
                         </button>
                     </Link>
-                    <div className='country__details'>
-                            <img className='country__details__flag' src={country.flags.svg} alt={country.name.common} />
-                        <div className='country__details__info'>
-                            <h1 className='country__details__name'>{country.name.common}</h1>
-                            <div className='middle'>
-                                <div className='left'>
-                                    <p className='detail'>Native Name: <span className="oppa">{country.name.official}</span></p>
-                                    <p className='detail'>Population: <span className="oppa">{country.population.toLocaleString()}</span></p>
-                                    <p className='detail'>Region: <span className="oppa">{country.region}</span></p>
-                                    <p className='detail'>Sub Region: <span className="oppa">{country.subregion}</span></p>
-                                    <p className='detail'>Capital: <span className="oppa">{country.capital}</span></p>
+                    <div className={css.country__details}>
+                            <img className={css.country__details__flag} src={country.flags.svg} alt={country.name.common} />
+                        <div className={css.country__details__info}>
+                            <h1 className={css.country__details__name}>{country.name.common}</h1>
+                            <div className={css.middle}>
+                                <div className={css.left}>
+                                    <p className={css.detail}>Native Name: <span className={css.oppa}>{country.name.official}</span></p>
+                                    <p className={css.detail}>Population: <span className={css.oppa}>{country.population.toLocaleString()}</span></p>
+                                    <p className={css.detail}>Region: <span className={css.oppa}>{country.region}</span></p>
+                                    <p className={css.detail}>Sub Region: <span className={css.oppa}>{country.subregion}</span></p>
+                                    <p className={css.detail}>Capital: <span className={css.oppa}>{country.capital}</span></p>
                                 </div>
-                                <div className='right'>
-                                    <p className='detail'>Top Level Domain: <span className='oppa'>{country.tld}</span></p>
-                                    <p className='detail'>Currencies: <span className='oppa'>{Object.values(country.currencies)[0].name}</span></p>
-                                    <p className='detail'>Languages: <span className='oppa'>{Object.values(country.languages).join(',')}</span></p>
+                                <div className={css.right}>
+                                    <p className={css.detail}>Top Level Domain: <span className={css.oppa}>{country.tld}</span></p>
+                                    <p className={css.detail}>Currencies: <span className={css.oppa}>{Object.values(country.currencies)[0].name}</span></p>
+                                    <p className={css.detail}>Languages: <span className={css.oppa}>{Object.values(country.languages).join(',')}</span></p>
                                 </div>
                             </div>
-                            <div className='bottom'>
-                                <p className='detail'>Country Borders:&nbsp;</p>
-                                <div className='borders__wrapper'>
+                            <div className={css.bottom}>
+                                <p className={css.detail}>Country Borders:&nbsp;</p>
+                                <div className={css.borders__wrapper}>
                                     {  border.length > 0 ? border.map((b,_i) => (
                                         <Link to={`/name/${b.name.common}`} key={_i}>
-                                            <button className='border-btn'>
+                                            <button className={css.btn__border}>
                                                 {b.name.common}
                                             </button>
                                         </Link>
-                                    )): <p className='detail'><span className='oppa'>No borders</span></p>}
+                                    )): <p className={css.detail}><span className={css.oppa}>No borders</span></p>}
                                 </div>
                             </div>
                         </div>
@@ -95,7 +94,7 @@ const Details = () => {
                 </div>
             </>
             }
-        </Container>
+        </div>
     )
 }
 

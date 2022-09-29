@@ -1,16 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import Details from "./pages/details/Details";
-import Region from './components/region/Region';
-import Navbar from "./components/navbar/Navbar";
-import Home from "./pages/home/Home";
+import Details from "./pages/Details";
+import Navbar from "./components/Navbar";
+import Common from "./pages/Common";
 
-function App() {
+const App = () => {
   return (
     <>
       <Navbar />
       <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path="/region/:region" element={<Region />} />
+          <Route path='/' element={<Common type='all'/>} />
+          <Route path="/region/:region" element={<Common type='region'/>} />
           <Route path="/name/:countryName" element={<Details />} />
       </Routes>
     </>
