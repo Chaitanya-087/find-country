@@ -41,7 +41,7 @@ const Common = ({ type }) => {
         if (countryName === '') {
             return data
         } else {
-            return data.filter((country) => country.name.common.toLowerCase().includes(countryName))
+            return data.filter((country) => country?.name?.common.toLowerCase().includes(countryName))
         }
     }
 
