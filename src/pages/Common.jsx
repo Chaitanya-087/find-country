@@ -3,7 +3,7 @@ import Search from '../components/Search';
 import { useLocation } from 'react-router-dom'
 import css from '../styles/pages.module.css'
 import { CircularProgress } from '@mui/material';
-import { useEffect, useRef, useState } from 'react'
+import { useEffect,useState } from 'react'
 
 const Common = ({ type }) => {
     const location = useLocation()
@@ -18,11 +18,9 @@ const Common = ({ type }) => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [countryName, setCountryName] = useState('');
-    const once = useRef(false)
 
     useEffect(() => {
         setLoading(true)
-        if (once.current) {
             const getCountries = () => {
                 fetch(url).then((res) => res.json()).then(data => {
                     setLoading(false)
@@ -30,18 +28,13 @@ const Common = ({ type }) => {
                 });
             }
             getCountries();
-        }
-
-        return () => {
-            once.current = true
-        }
     }, [url])
 
     const SearchCountries = (data) => {
         if (countryName === '') {
             return data
         } else {
-            return data.filter((country) => country?.name?.common.toLowerCase().includes(countryName))
+            return data.filter((country) => country.name.common.toLowerCase().includes(countryName))
         }
     }
 
