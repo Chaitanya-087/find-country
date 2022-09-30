@@ -36,7 +36,7 @@ const Common = ({ type }) => {
     }, [url])
 
     const SearchCountries = data => {
-                 return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
+                 return data.filter((country) => country.name.common.toString().toLowerCase().startsWith(countryName))
             }
 
     return (
