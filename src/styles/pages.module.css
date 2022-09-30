@@ -17,8 +17,11 @@
     background-color: var(--clr-element);
     border-radius: 5px;
     gap: 8px;
+    width: min-content;
 }
-
+.country__details__info {
+    align-self: center;
+}
 .btn__back>span {
     font-size: var(--fs-details);
     font-weight: 600;
@@ -26,6 +29,7 @@
 
 .country__details__flag {
     width:100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     max-width:600px
 }
 .country__details__name {
@@ -75,7 +79,7 @@
 @media (min-width: 1080px) {
     .country__details{
         flex-direction: row;
-        gap: 2rem;
+        gap: 10rem;
         width: 100%;
         /* justify-content: space-between; */
     }

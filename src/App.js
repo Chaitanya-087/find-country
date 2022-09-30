@@ -12,6 +12,7 @@ const App = () => {
           <Route path="/region/:region" element={<Common type='region'/>} />
           <Route path="/name/:countryName" element={<Details />} />
       </Routes>
+      
     </>
   )
 }

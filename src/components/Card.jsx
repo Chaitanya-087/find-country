@@ -2,7 +2,7 @@ import React from 'react'
 import css from '../styles/components.module.css';
 import { Link } from 'react-router-dom'
 import { IconButton } from '@mui/material'
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const Card = ({ country }) => {
   return (
@@ -16,7 +16,7 @@ const Card = ({ country }) => {
         </div>
         <Link to={`/name/${country.name.common}`} className={css.btn__moreinfo}>
           <IconButton>
-              <KeyboardDoubleArrowRightIcon />
+              <ChevronRightIcon />
           </IconButton>
         </Link>
       </div>
