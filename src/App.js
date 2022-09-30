@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import React from 'react';
+import React, { Suspense } from 'react';
+import CrazyLoader from './components/CrazyLoader';
 const Details = React.lazy(() => import('./pages/Details'))
 const Navbar = React.lazy(() => import('./components/Navbar'))
 const Common = React.lazy(() => import('./pages/Common'))
@@ -10,9 +11,9 @@ const App = () => {
     <>
       <Navbar />
       <Routes>
-          <Route path='/' element={<Common type='all'/>} />
-          <Route path="/region/:region" element={<Common type='region'/>} />
-          <Route path="/name/:countryName" element={<Details />} />
+          <Route path='/' element={<Suspense fallback={<CrazyLoader/>}><Common type='all'/></Suspense>} />
+          <Route path="/region/:region" element={<Suspense fallback={<CrazyLoader/>}><Common type='region'/></Suspense>} />
+          <Route path="/name/:countryName" element={<Suspense fallback={<CrazyLoader/>}><Details /></Suspense>} />
       </Routes>
       
     </>

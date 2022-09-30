@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import PacmanLoader from 'react-spinners/PacmanLoader'
 import { Link, useParams } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import css from '../styles/pages.module.css'
 import { useNavigate } from 'react-router-dom';
+import CrazyLoader from '../components/CrazyLoader';
 
 const Details = () => {
     const { countryName } = useParams()
@@ -56,9 +56,7 @@ const Details = () => {
 
     return (
         <div className={css.container}>
-            {loading ? <div className={css.loading__icon}>
-                <PacmanLoader loading={loading} color={'#10b5fc'}/>
-            </div>  :
+            {loading ? <CrazyLoader/> :
                 <>
                     <div className={css.country__details__wrapper}>
                         <button className={css.btn__back} onClick={() => navigate(-1)}>
