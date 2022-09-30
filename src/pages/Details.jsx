@@ -70,7 +70,7 @@ const Details = () => {
                                 <div className={css.middle}>
                                     <div className={css.left}>
                                         <p className={css.detail}>Native Name: <span className={css.oppa}>{country.name.official}</span></p>
-                                        <p className={css.detail}>Population: <span className={css.oppa}>{country.population.toLocaleString()}</span></p>
+                                        <p className={css.detail}>Population: <span className={css.oppa}>{country.population?.toLocaleString()}</span></p>
                                         <p className={css.detail}>Region: <span className={css.oppa}>{country.region}</span></p>
                                         <p className={css.detail}>Sub Region: <span className={css.oppa}>{country.subregion}</span></p>
                                         <p className={css.detail}>Capital: <span className={css.oppa}>{country.capital}</span></p>

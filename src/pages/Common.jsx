@@ -44,7 +44,7 @@ const Common = ({ type }) => {
     const SearchCountries = data => {
                  return data.filter((country) => {
                     const regex = new RegExp(`^${countryName}`,'gi')
-                    return country.name.common.match(regex)
+                    return country?.name?.common?.match(regex)
                  })
             }
 
