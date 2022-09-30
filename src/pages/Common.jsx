@@ -1,12 +1,11 @@
-import Card from '../components/Card'
 import Search from '../components/Search';
 import { useEffect, useState } from 'react'
 import css from '../styles/pages.module.css'
 import { useLocation } from 'react-router-dom'
 import GoTop from '../components/GoTop';
-import PacmanLoader from 'react-spinners/PacmanLoader'
-const Common = ({ type }) => {
+import Grid from '../components/Grid';
 
+const Common = ({ type }) => {
     const location = useLocation()
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -36,28 +35,15 @@ const Common = ({ type }) => {
         getCountries();
     }, [url])
 
-    const SearchCountries = (data) => {
-        if (data.length > 0) {
-            if (countryName === '') {
-                return data
-            } else {
-                return data.filter((country) => country?.name?.common?.toLowerCase().startsWith(countryName))
+    const SearchCountries = data => {
+                 return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
             }
-        }
-    }
 
     return (
-        <div className={css.container}>
+     
+     <div className={css.container}>
             <Search setCountryName={setCountryName} />
-            {loading ? <div className={css.loading__icon}>
-                <PacmanLoader loading={loading} color={'#10b5fc'} size={15}/>
-            </div> :
-                <div className={css.grid}>
-                    {
-                        SearchCountries(countries).map((country, index) => <Card key={index} country={country} />)
-                    }
-                </div>
-            }
+            <Grid countries={SearchCountries(countries)} loading={loading} />
             <GoTop />
         </div>
     )
