@@ -29,15 +29,13 @@ const Common = ({ type }) => {
         getCountries();
     }, [url])
 
-
     const SearchCountries = (data) => {
-        if (countryName === '') {
-            return data
-        } else {
-            return data.filter((country) => {
-                const temp = country.name.common.toLowerCase()
-                return temp.startsWith(countryName)
-            })
+        if (Object.keys(data).length > 0) {
+            if (countryName === '') {
+                return data
+            } else {
+                return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
+            }
         }
     }
 
