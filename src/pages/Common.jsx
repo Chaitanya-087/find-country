@@ -46,7 +46,7 @@ const Common = ({ type }) => {
         if (countryName === '') return countries
         return countries.filter(country => country.name.common.toLowerCase().includes(countryName.toLowerCase()))
    },[countryName,countries]) 
-
+   
     return (
      
         <div className={css.container}>

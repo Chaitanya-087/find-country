@@ -6,13 +6,13 @@ import CrazyLoader from './CrazyLoader';
 const Grid = ({countries,loading}) => {
   return (
     <>
-    {loading ? <CrazyLoader loading={loading} /> : 
+    {loading ? <CrazyLoader loading={loading} /> : countries.length > 0 ?
                 <div className={css.grid}>
                   {console.log(countries)}
                     {
                         countries.map((country, index) => <Card key={index} country={country} />)
                     }
-                </div>
+                </div> : <h2>Country not found!!</h2>
             }
     </>
   )
