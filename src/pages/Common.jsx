@@ -1,5 +1,5 @@
 import Search from '../components/Search';
-import { useEffect, useState } from 'react'
+import { useEffect, useState,useRef } from 'react'
 import css from '../styles/pages.module.css'
 import { useLocation } from 'react-router-dom'
 import GoTop from '../components/GoTop';
@@ -10,7 +10,7 @@ const Common = ({ type }) => {
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [countryName, setCountryName] = useState('');
-
+    const once = useRef(false)
     let url = ''
     switch(type) {
         case 'region' : url = `https://restcountries.com/v3.1${location.pathname}`; break
@@ -19,29 +19,37 @@ const Common = ({ type }) => {
 
     useEffect(() => {
         window.scrollTo({top:0,behavior:'smooth'})
-        setLoading(true)
-        const getCountries = async () => {
-            try {
-                const res = await fetch(url)
-                const data = await res.json()
-                setCountries(data)
-
-            } catch(err) {
-                console.error(err)
-            } finally {
-                setLoading(false)
+        if (once.current) {
+            setLoading(true)
+            const getCountries = async () => {
+                try {
+                    const res = await fetch(url)
+                    const data = await res.json()
+                    setCountries(data)
+    
+                } catch(err) {
+                    console.error(err)
+                } finally {
+                    setLoading(false)
+                }
             }
+            getCountries();
         }
-        getCountries();
+        return  () => {
+            once.current = true
+            new AbortController()
+        }
     }, [url])
 
     const SearchCountries = data => {
+        console.log(data)
                  return data.filter((country) => country.name.common.toString().toLowerCase().startsWith(countryName))
             }
 
     return (
      
      <div className={css.container}>
+        {console.log(countryName)}
             <Search setCountryName={setCountryName} />
             <Grid countries={SearchCountries(countries)} loading={loading} />
             <GoTop />

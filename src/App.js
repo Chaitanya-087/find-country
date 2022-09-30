@@ -1,7 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
-import Details from "./pages/Details";
-import Navbar from "./components/Navbar";
-import Common from "./pages/Common";
+import React from 'react';
+const Details = React.lazy(() => import('./pages/Details'))
+const Navbar = React.lazy(() => import('./components/Navbar'))
+const Common = React.lazy(() => import('./pages/Common'))
+
 
 const App = () => {
   return (
