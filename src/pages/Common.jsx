@@ -41,20 +41,15 @@ const Common = ({ type }) => {
         }
     }, [url])
 
-    const SearchCountries = data => {
-                 return data.filter((country) => {
-                    if(country && country.name && country.name.common){
-                        return country.name.common.toLowerCase().includes(countryName.toLowerCase())
-                    }
-                 })
+    const SearchCountries = key => {
+                 return countries.filter(country => country.name.common.toLowerCase().includes(key.toLowerCase()))
             }
 
     return (
      
      <div className={css.container}>
-        {console.log(countryName)}
             <Search setCountryName={setCountryName} />
-            <Grid countries={SearchCountries(countries)} loading={loading} />
+            <Grid countries={SearchCountries(countryName)} loading={loading} />
             <GoTop />
         </div>
     )
