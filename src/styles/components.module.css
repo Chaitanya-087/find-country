@@ -21,6 +21,7 @@
 .navbar__title{
     font-weight: 800;
     font-size: large;
+    cursor: pointer;
 }
 
 .btn__theme {
@@ -155,6 +156,9 @@
 .country__name{
     font-weight: 800;
     margin-bottom: 0.5rem;
+    display: flex;
+    align-items:flex-start;
+    cursor: pointer;
 }
 .country__population,.country__region,.country__capital{
     font-weight: 600;
@@ -163,12 +167,6 @@
     opacity: 80%;
 }
 
-.btn__moreinfo{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    opacity: 80%;
-}
 /*grid styles*/
 .grid {
     display:grid;

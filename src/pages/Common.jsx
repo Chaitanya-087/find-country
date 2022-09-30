@@ -3,9 +3,8 @@ import Search from '../components/Search';
 import { useEffect, useState } from 'react'
 import css from '../styles/pages.module.css'
 import { useLocation } from 'react-router-dom'
-import { CircularProgress } from '@mui/material';
 import GoTop from '../components/GoTop';
-
+import PacmanLoader from 'react-spinners/PacmanLoader'
 const Common = ({ type }) => {
 
     const location = useLocation()
@@ -20,6 +19,7 @@ const Common = ({ type }) => {
     }
 
     useEffect(() => {
+        window.scrollTo({top:0,behavior:'smooth'})
         setLoading(true)
         const getCountries = async () => {
             try {
@@ -34,9 +34,6 @@ const Common = ({ type }) => {
             }
         }
         getCountries();
-        return () => {
-            new AbortController()
-        }
     }, [url])
 
     const SearchCountries = (data) => {
@@ -44,7 +41,7 @@ const Common = ({ type }) => {
             if (countryName === '') {
                 return data
             } else {
-                return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
+                return data.filter((country) => country?.name?.common?.toLowerCase().startsWith(countryName))
             }
         }
     }
@@ -52,7 +49,9 @@ const Common = ({ type }) => {
     return (
         <div className={css.container}>
             <Search setCountryName={setCountryName} />
-            {loading ? <div className={css.loading__icon}><CircularProgress /></div> :
+            {loading ? <div className={css.loading__icon}>
+                <PacmanLoader loading={loading} color={'#10b5fc'} size={15}/>
+            </div> :
                 <div className={css.grid}>
                     {
                         SearchCountries(countries).map((country, index) => <Card key={index} country={country} />)

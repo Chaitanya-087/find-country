@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { CircularProgress } from '@mui/material'
+import PacmanLoader from 'react-spinners/PacmanLoader'
 import { Link, useParams } from 'react-router-dom';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import css from '../styles/pages.module.css'
@@ -14,15 +14,20 @@ const Details = () => {
     const once = useRef(false)
 
     const fetchBorder = async (country) => {
-        const borders = country.borders.join(',')
-        console.log(borders)
-        try {
-            const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${borders}`)
-            const data = await response.json()
-            setBorders(data)
-
-        } catch (error) {
-            console.error(error)
+        let borders = []
+        if (country.borders) {
+            borders = country.borders.join(",")
+            try {
+                const response = await fetch(`https://restcountries.com/v3.1/alpha?codes=${borders}`)
+                const data = await response.json()
+                setBorders(data)
+    
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        else{
+            setBorders([])
         }
     }
 
@@ -52,8 +57,8 @@ const Details = () => {
     return (
         <div className={css.container}>
             {loading ? <div className={css.loading__icon}>
-                <CircularProgress />
-            </div> :
+                <PacmanLoader loading={loading} color={'#10b5fc'}/>
+            </div>  :
                 <>
                     <div className={css.country__details__wrapper}>
                         <button className={css.btn__back} onClick={() => navigate(-1)}>
