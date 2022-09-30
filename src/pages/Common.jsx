@@ -12,7 +12,7 @@ const Common = ({ type }) => {
     const [loading, setLoading] = useState(true);
     const [countryName, setCountryName] = useState('');
 
-    let url = ''
+    let url = 'https://restcountries.com/v3.1/all'
     switch(type) {
         case 'region' : url = `https://restcountries.com/v3.1${location.pathname}`; break
         default: url = 'https://restcountries.com/v3.1/all'
@@ -27,7 +27,6 @@ const Common = ({ type }) => {
             setCountries(data)
         }
         getCountries();
-
     }, [url])
 
 
@@ -35,7 +34,10 @@ const Common = ({ type }) => {
         if (countryName === '') {
             return data
         } else {
-            return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
+            return data.filter((country) => {
+                const temp = country.name.common.toLowerCase()
+                return temp.startsWith(countryName)
+            })
         }
     }
 
