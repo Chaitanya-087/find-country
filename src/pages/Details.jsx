@@ -23,8 +23,8 @@ const Details = () => {
     }
 
     useEffect(() => {
-        setIsLoading(true)
         if (once.current) {
+            setIsLoading(true)
             const fetchCountry = async () => {
                 try {
                     const response = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
@@ -32,8 +32,8 @@ const Details = () => {
                     const country = data.find(item => item.name.common === countryName)
                     setCountry(country)
                     fetchBorder(country)
-                } catch (error) {
-                    console.log(error)
+                } catch (err) {
+                    console.error(err)
                 } finally {
                     setIsLoading(false)
                 }

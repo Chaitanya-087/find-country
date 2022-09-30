@@ -1,40 +1,41 @@
 import Card from '../components/Card'
 import Search from '../components/Search';
-import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import css from '../styles/pages.module.css'
+import { useLocation } from 'react-router-dom'
 import { CircularProgress } from '@mui/material';
-import { useEffect,useState } from 'react'
+
 
 const Common = ({ type }) => {
     const location = useLocation()
-    let url = ''
-    if (type === 'all') {
-        url = 'https://restcountries.com/v3.1/all'
-    }
-    else if (type === 'region') {
-        url = `https://restcountries.com/v3.1/region/${location.pathname.split('/')[2]}`
-    }
-
     const [countries, setCountries] = useState([]);
     const [loading, setLoading] = useState(true);
     const [countryName, setCountryName] = useState('');
 
+    let url = ''
+    switch(type) {
+        case 'region' : url = `https://restcountries.com/v3.1${location.pathname}`; break
+        default: url = 'https://restcountries.com/v3.1/all'
+    }
+
     useEffect(() => {
         setLoading(true)
-            const getCountries = () => {
-                fetch(url).then((res) => res.json()).then(data => {
-                    setLoading(false)
-                    setCountries(data);
-                });
-            }
-            getCountries();
+        const getCountries = async () => {
+            const res = await fetch(url)
+            const data = await res.json()
+            setLoading(false)
+            setCountries(data)
+        }
+        getCountries();
+
     }, [url])
+
 
     const SearchCountries = (data) => {
         if (countryName === '') {
             return data
         } else {
-            return data.filter((country) => country.name.common.toLowerCase().includes(countryName))
+            return data.filter((country) => country.name.common.toLowerCase().startsWith(countryName))
         }
     }
 
