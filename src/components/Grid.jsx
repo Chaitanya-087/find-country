@@ -8,6 +8,7 @@ const Grid = ({countries,loading}) => {
     <>
     {loading ? <CrazyLoader loading={loading} /> : 
                 <div className={css.grid}>
+                  {console.log(countries)}
                     {
                         countries.map((country, index) => <Card key={index} country={country} />)
                     }

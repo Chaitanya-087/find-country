@@ -4,6 +4,7 @@ import css from '../styles/pages.module.css'
 import { useLocation } from 'react-router-dom'
 import GoTop from '../components/GoTop';
 import Grid from '../components/Grid';
+import { useMemo } from 'react';
 
 const Common = ({ type }) => {
     const location = useLocation()
@@ -41,15 +42,16 @@ const Common = ({ type }) => {
         }
     }, [url])
 
-    const SearchCountries = key => {
-                 return countries.filter(country => country.name.common.toLowerCase().includes(key.toLowerCase()))
-            }
+   const Filteredata = useMemo(() => {
+        if (countryName === '') return countries
+        return countries.filter(country => country.name.common.toLowerCase().includes(countryName.toLowerCase()))
+   },[countryName,countries]) 
 
     return (
      
-     <div className={css.container}>
+        <div className={css.container}>
             <Search setCountryName={setCountryName} />
-            <Grid countries={SearchCountries(countryName)} loading={loading} />
+            <Grid countries={Filteredata} loading={loading} />
             <GoTop />
         </div>
     )
