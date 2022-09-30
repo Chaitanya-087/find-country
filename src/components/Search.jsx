@@ -1,11 +1,11 @@
 import css from '../styles/components.module.css';
 
-import React, {useState } from 'react'
+import React,{ useState } from 'react'
 import { Link ,useLocation} from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Search = ({setCountryName}) => {
+const Search = ({countries,setFilteredCountries}) => {
     const [openMenu, setOpenMenu] = useState(false)
     const location = useLocation()
     const region = location.pathname.includes('region') ? location.pathname.split('/')[2] : 'all'
@@ -13,12 +13,16 @@ const Search = ({setCountryName}) => {
     const toggleMenu = () => {
         setOpenMenu(prev => !prev)
     }
-
+    const handleSearch = (e) => {
+        e.preventDefault()
+        setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
+    }
+    
     return (
         <div className={css.search__form}>
             <form onSubmit={(e) => e.preventDefault()} className={css.input__wrapper}>
                 <SearchIcon className={css.search__icon} />
-                <input className={css.input} type='text' placeholder='Search for a country...' onChange={(e) => setCountryName(e.target.value)}/>
+                <input className={css.input} type='text' placeholder='Search for a country...' onChange={handleSearch}/>
             </form>
             <div className={css.custom__select}>
 
