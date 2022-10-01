@@ -13,9 +13,10 @@ const Search = ({countries,setFilteredCountries}) => {
     const toggleMenu = () => {
         setOpenMenu(prev => !prev)
     }
-    const handleSearch = (e) => {
-        e.preventDefault()
-        setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
+
+    const handleSearch = () => {
+        // e.preventDefault()
+        // setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
     }
     
     return (

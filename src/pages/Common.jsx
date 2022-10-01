@@ -45,10 +45,7 @@ const Common = ({ type }) => {
         }
     }, [url])
 
-//    const Filteredata = useMemo(() => {
-//         if (countryName === '') return countries
-//         return countries.filter(country => country.name?.common.toLowerCase().includes(countryName.toLowerCase()))
-//    },[countryName,countries]) 
+
 
     return (
      
