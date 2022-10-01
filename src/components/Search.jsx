@@ -14,7 +14,9 @@ const Search = ({countries,setFilteredCountries}) => {
     }
 
     const handleSearch = (e) => {
-        setFilteredCountries(countries.filter(country => country.name?.common?.toLowerCase().includes(e.target.value?.toLowerCase())))
+        const search = e.target.value.toLowerCase()
+        if (search) setFilteredCountries(countries.filter(country => country.name?.common?.toLowerCase().includes(e.target.value?.toLowerCase())))
+        else setFilteredCountries(countries)
     }
     
     return (
