@@ -16,7 +16,7 @@ const Search = ({countries,setFilteredCountries}) => {
 
     const handleSearch = () => {
         // e.preventDefault()
-        // setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
+        setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
     }
     
     return (
