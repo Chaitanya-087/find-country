@@ -2,7 +2,6 @@ import React from 'react'
 import css from '../styles/components.module.css';
 import Card from './Card';
 import CrazyLoader from './CrazyLoader';
-// import {motion} from 'framer-motion';
 
 const Grid = ({ countries, loading }) => {
   return (

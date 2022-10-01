@@ -10,11 +10,16 @@ const App = () => {
   return (
     <>
       <Navbar />
-      <Routes>
-          <Route path='/' element={<Suspense fallback={<CrazyLoader/>}><Common type='all'/></Suspense>} />
-          <Route path="/region/:region" element={<Suspense fallback={<CrazyLoader/>}><Common type='region'/></Suspense>} />
-          <Route path="/name/:countryName" element={<Suspense fallback={<CrazyLoader/>}><Details /></Suspense>} />
-      </Routes>
+      <main>
+        <Routes>
+            <Route path='/' element={<Suspense fallback={<CrazyLoader/>}><Common API_URL='https://restcountries.com/v3.1/all'/></Suspense>} />
+            <Route path="/region/africa" element={<Suspense fallback={<CrazyLoader/>}><Common API_URL = 'https://restcountries.com/v3.1/region/africa' /></Suspense>} />
+            <Route path="/region/america" element={<Suspense fallback={<CrazyLoader/>}><Common API_URL = 'https://restcountries.com/v3.1/region/america' /></Suspense>} />
+            <Route path="/region/oceania" element={<Suspense fallback={<CrazyLoader/>}><Common API_URL = 'https://restcountries.com/v3.1/region/oceania' /></Suspense>} />
+            <Route path="/region/asia" element={<Suspense fallback={<CrazyLoader/>}><Common API_URL = 'https://restcountries.com/v3.1/region/asia' /></Suspense>} />
+            <Route path="/name/:countryname" element={<Suspense fallback={<CrazyLoader/>}><Details /></Suspense>} />
+        </Routes>
+      </main>
       
     </>
   )

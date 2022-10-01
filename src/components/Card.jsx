@@ -2,7 +2,7 @@ import React from 'react';
 import css from '../styles/components.module.css';
 import { Link } from 'react-router-dom';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-// import {motion} from 'framer-motion';
+
 const Card = ({ country }) => {
   return (
     <div className={css.card}>

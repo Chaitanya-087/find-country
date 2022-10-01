@@ -1,6 +1,5 @@
-import css from '../styles/components.module.css';
-
 import React,{ useState } from 'react'
+import css from '../styles/components.module.css';
 import { Link ,useLocation} from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -9,14 +8,13 @@ const Search = ({countries,setFilteredCountries}) => {
     const [openMenu, setOpenMenu] = useState(false)
     const location = useLocation()
     const region = location.pathname.includes('region') ? location.pathname.split('/')[2] : 'all'
-    
+
     const toggleMenu = () => {
         setOpenMenu(prev => !prev)
     }
 
-    const handleSearch = () => {
-        // e.preventDefault()
-        setFilteredCountries(countries.filter(country => country.name?.common.toLowerCase().includes(e.target.value.toLowerCase())))
+    const handleSearch = (e) => {
+        setFilteredCountries(countries.filter(country => country.name?.common?.toLowerCase().includes(e.target.value?.toLowerCase())))
     }
     
     return (

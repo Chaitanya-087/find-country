@@ -1,31 +1,22 @@
 import Search from '../components/Search';
-import { useEffect, useState,useRef } from 'react'
+import { useEffect, useState,useRef} from 'react'
 import css from '../styles/pages.module.css'
-import { useLocation } from 'react-router-dom'
 import GoTop from '../components/GoTop';
 import Grid from '../components/Grid';
-// import { useMemo } from 'react';
 
-const Common = ({ type }) => {
-    const location = useLocation()
+
+const Common = ({ API_URL }) => {
     const [countries, setCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([])
     const [loading, setLoading] = useState(true);
-
     const once = useRef(false)
-
-    let url = ''
-    switch(type) {
-        case 'region' : url = `https://restcountries.com/v3.1${location.pathname}`; break
-        default: url = 'https://restcountries.com/v3.1/all'
-    }
 
     useEffect(() => {
         if (once.current) {
             setLoading(true)
             const getCountries = async () => {
                 try {
-                    const res = await fetch(url)
+                    const res = await fetch(API_URL)
                     const data = await res.json()
                     setCountries(data)
                     setFilteredCountries(data)
@@ -43,7 +34,7 @@ const Common = ({ type }) => {
             setCountries([])
             new AbortController()
         }
-    }, [url])
+    }, [API_URL])
 
 
 
